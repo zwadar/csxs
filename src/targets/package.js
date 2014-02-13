@@ -186,6 +186,15 @@ roto.addTarget('package', {
 
 	// package hybrid extension
 	roto.addTask('csxs.fs_copy', {from: 'assets/icon-mxi.png', to: folder_package + '/icon.png'});
+
+  // copy libs directory
+  roto.addTask('csxs.fs_copy_folder', function() {
+    return {
+      from  : './libs',
+      to    : folder_package + '/libs'
+    };
+  });
+
 	roto.addTask('csxs.fs_copy', function() {
 		return {
 			from     : config.basename + '.mxi',

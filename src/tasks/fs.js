@@ -15,6 +15,7 @@
 
 var fs = require('fs');
 var spawn = require('child_process').spawn;
+var wrench = require('wrench');
 
 var task_symlink = function(callback, options) {
 	var args = ['-s', options.from, options.to];
@@ -33,5 +34,15 @@ var task_copy = function(callback, options) {
 	callback();
 };
 
+var task_copy_folder = function(callback, options) {
+  if (!fs.existsSync(options.from)) {
+    console.error(roto.colorize('ERROR: ', 'red') + 'Folder not found "' + options.from + '".');
+    return callback(false);
+  }
+  wrench.copyDirSyncRecursive(options.from, options.to);
+  callback();
+};
+
 roto.defineTask('csxs.fs_copy', task_copy);
+roto.defineTask('csxs.fs_copy_folder', task_copy_folder);
 roto.defineTask('csxs.fs_symlink', IS_WINDOWS ? task_copy : task_symlink);
