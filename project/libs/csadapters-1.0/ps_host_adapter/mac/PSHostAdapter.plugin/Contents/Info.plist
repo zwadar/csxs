@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>PSHostAdapter</string>
+	<key>CFBundleGetInfoString</key>
+	<string>12.0, Copyright © 2010 Adobe Systems Incorporated</string>
+	<key>CFBundleName</key>
+	<string>PSHostAdapter</string>
+	<key>CFBundlePackageType</key>
+	<string>8LIZ</string>
+	<key>CFBundleSignature</key>
+	<string>8BIM</string>
+</dict>
+</plist>

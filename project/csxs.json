@@ -68,18 +68,6 @@
 
 	// A list of all libraries to link at compile time (by Flex version)
 	"flex": {
-		"4.5.0": [
-			"${CSSDK}/libs/CSXSLibrary-3.0-sdk-4.5-public.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/core.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/framework.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/rpc.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/air/aircore.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/air/airframework.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/air/servicemonitor.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/air/applicationupdater.swc",
-			"${CSSDK}/CS Flex SDK 4.5.0/frameworks/libs/air/applicationupdater_ui.swc",
-			"${CSSDK}/libs/cslibs/2.0/4.5/release/apedelta.swc"
-		],
 		"3.4.0": [
 			"${CSSDK}/libs/CSXSLibrary-2.0-sdk-3.4-public.swc",
 			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/flex.swc",
@@ -92,31 +80,21 @@
 			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/servicemonitor.swc",
 			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater.swc",
 			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater_ui.swc",
-			"${CSSDK}/libs/cslibs/1.0/3.4/release/apedelta.swc"
+			"${CSSDK}/libs/cslibs/1.0/3.4/release/apedelta.swc",
+      "${CSLIBS}/flex-html5/bin/flex-html5.swc"
 		]
 	},
 
-	// The "package" target prepares individualized builds and bundles
-	// them as a single *.zxp installer. This is useful for custom
-	// configuration by product. Each object in this list extends the
-	// main project configuration.
-	"builds": [
-		{
-			"manifest": "manifest.cc.xml",
-			"flex-version": "3.4.0",
-			"cc-products": {{cc-products}}
-		},
-		{
-			"manifest": "manifest.cs6.xml",
-			"flex-version": "3.4.0",
-			"cs-products": {{cs-products}},
-			"cs-versions": ["6.0"]
-		},
-		{
-			"manifest": "manifest.cs5.xml",
-			"flex-version": "3.4.0",
-			"cs-products": {{cs-products}},
-			"cs-versions": ["5.0", "5.5"]
-		}
-	]
+  "builds": [
+    {
+      "manifest": "manifest.xml",
+      "flex-version": "3.4.0",
+      "cs-products": ["photoshop","illustrator"],
+      "cs-versions": ["5.0", "5.5", "6.0"],
+      "cc-products": {
+        "photoshop": [{ "min": "14.0", "max": "14.9" }],
+        "illustrator": [{ "min": "17.0", "max": "17.9" }]
+      }
+    }
+  ]
 }

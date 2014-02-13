@@ -10,6 +10,18 @@
 	</products>
 	<files>
 		{{{list-files}}}
+
+		<file destination="$automate" maxVersion="12.9" minVersion="12.0" platform="win" products="Photoshop32" shared="true" source="libs/csadapters-1.0/ps_host_adapter/win32/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="12.9" minVersion="12.0" platform="win" products="Photoshop64" shared="true" source="libs/csadapters-1.0/ps_host_adapter/win64/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="12.9" minVersion="12.0" platform="mac" products="Photoshop" shared="true" source="libs/csadapters-1.0/ps_host_adapter/mac/PSHostAdapter.plugin"/>
+        <file destination="$automate" maxVersion="13.9" minVersion="13.0" platform="win" products="Photoshop32" shared="true" source="libs/csadapters-2.0/ps_host_adapter/win32/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="13.9" minVersion="13.0" platform="win" products="Photoshop64" shared="true" source="libs/csadapters-2.0/ps_host_adapter/win64/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="13.9" minVersion="13.0" platform="mac" products="Photoshop" shared="true" source="libs/csadapters-2.0/ps_host_adapter/mac/PSHostAdapter.plugin"/>
+        <file destination="$automate" maxVersion="14.9" minVersion="14.0" platform="win" products="Photoshop32" shared="true" source="libs/csadapters-3.0/ps_host_adapter/win32/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="14.9" minVersion="14.0" platform="win" products="Photoshop64" shared="true" source="libs/csadapters-3.0/ps_host_adapter/win64/PSHostAdapter.8li"/>
+        <file destination="$automate" maxVersion="14.9" minVersion="14.0" platform="mac" products="Photoshop" shared="true" source="libs/csadapters-3.0/ps_host_adapter/mac/PSHostAdapter.plugin"/>
+
+
 		<file source="icon.png" destination="$ExtensionSpecificEMStore" />
 	</files>
 </macromedia-extension>

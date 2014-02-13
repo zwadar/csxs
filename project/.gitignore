@@ -13,3 +13,4 @@ bin-debug
 *.swp
 *.zxp
 *.sublime-workspace
+.idea
