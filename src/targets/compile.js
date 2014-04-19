@@ -129,26 +129,27 @@ roto.addTarget('compile', {
 	});
 
 	// minify jsx scripts
-	roto.addTask(function(callback) {
-		console.log('Minifying *.jsx scripts...');
-		var files = roto.findFiles(folder_build + '/*.jsx');
-		async.each(files, function(file, callback) {
-			roto.executeTask('uglify', {
-				files  : [path.relative(path.resolve(folder_build), file)],
-				output : file,
-				banner : '/** Copyright (C) ' + (new Date()).getFullYear() + ' - ' + config.author + ' */'
-			}, function(status) {
-				callback(status === false ? 'Unable to process "' + file + '". Check for syntax errors and try again.' : null);
-			});
-		}, function(err) {
-			if (err) {
-				console.error(roto.colorize('ERROR: ', 'red') + err);
-				callback(false);
-			} else {
-				callback();
-			}
-		});
-	});
+
+//	roto.addTask(function(callback) {
+//		console.log('Minifying *.jsx scripts...');
+//		var files = roto.findFiles(folder_build + '/*.jsx');
+//		async.each(files, function(file, callback) {
+//			roto.executeTask('uglify', {
+//				files  : [path.relative(path.resolve(folder_build), file)],
+//				output : file,
+//				banner : '/** Copyright (C) ' + (new Date()).getFullYear() + ' - ' + config.author + ' */'
+//			}, function(status) {
+//				callback(status === false ? 'Unable to process "' + file + '". Check for syntax errors and try again.' : null);
+//			});
+//		}, function(err) {
+//			if (err) {
+//				console.error(roto.colorize('ERROR: ', 'red') + err);
+//				callback(false);
+//			} else {
+//				callback();
+//			}
+//		});
+//	});
 
 	// compile all mxml files
 	var compile_mxml = function(path_mxml) {
