@@ -86,7 +86,7 @@ roto.addTarget('configure', {
 
 	roto.addTask('csxs.amxmlc_manifest', function() {
 		return _.extend({}, config.builds[0], {
-			input: 'src/manifest.xml',
+			input: 'src/manifest.cc.xml',
 			output: '.staged-extension/CSXS/manifest.xml'
 		});
 	});
