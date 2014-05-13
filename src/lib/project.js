@@ -78,7 +78,13 @@ project.getCompilerArguments = function(config, options, extra_properties) {
 			value = value[options.profile];
 		}
 		if (properties.hasOwnProperty(key) && ((typeof value !== 'object' && typeof value !== 'array') || properties[key] === null)) {
-			args.push('-define=CONFIG::' + key + ',' + JSON.stringify(value));
+
+      if(typeof value == 'string') {
+        args.push("-define=CONFIG::" + key + ",'" + value + "'");
+      } else {
+        args.push('-define=CONFIG::' + key + ',' + JSON.stringify(value));
+      }
+
 		}
 	}
 
