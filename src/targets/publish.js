@@ -101,9 +101,9 @@ roto.addTarget('publish', {
 	// check to see if this version has already been released
 	roto.addTask(function(callback) {
 		http.request({
-			hostname : config.s3.bucket,
+			hostname : "http://" + config.s3.bucket + ".s3-eu-west-1.amazonaws.com",
 			port     : 80,
-			path     : '/releases/' + file_zxp_versioned,
+			path     : '/' + file_zxp_versioned,
 			method   : 'HEAD'
 		}, function(res) {
 			if (res.statusCode === 200) {
