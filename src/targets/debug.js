@@ -94,7 +94,7 @@ roto.addTarget('debug', {
 
 		folder_apps        = IS_WINDOWS ? 'C:/Program Files' : '/Applications';
 		folder_source      = './build/bin-debug';
-		folder_application = folder_apps + '/Adobe ' + host.name + ' CS' + ver_selected;
+		folder_application = folder_apps + (IS_WINDOWS ? '/Adobe' : '') +'/Adobe ' + host.name + ' CS' + ver_selected +(IS_WINDOWS && IS_64BIT ? ' (64 Bit)' : '');
 		folder_home        = process.env[IS_WINDOWS ? 'USERPROFILE' : 'HOME'];
 		folder_servicemgr  = IS_WINDOWS
 			? folder_home  + '/AppData/Roaming/Adobe/CS' + ver_selected + 'ServiceManager/extensions'
@@ -110,10 +110,19 @@ roto.addTarget('debug', {
 			return callback(false);
 		}
 
-		path_application = folder_application + '/Adobe ' + host.name + ' CS' + ver_selected + (IS_WINDOWS ? '.exe' : '.app');
-		if (!fs.existsSync(path_application)) {
-			path_application = folder_application + '/Adobe ' + host.name + (IS_WINDOWS ? '.exe' : '.app')
-		}
+                if(IS_WINDOWS)
+                {
+                    path_application = folder_application + '/' + host.name +  '.exe';	
+                      if (!fs.existsSync(path_application)) {
+                           console.error('"' + path_application + '"');
+                    }  
+                } else {
+                    path_application = folder_application + '/Adobe ' + host.name + ' CS' + ver_selected + '.app';
+                    if (!fs.existsSync(path_application)) {
+                            path_application = folder_application + '/Adobe ' + host.name + '.app';
+                    }  
+                }
+
 
 		callback();
 	});
@@ -201,17 +210,17 @@ roto.addTarget('debug', {
 		});
 		roto.addTask(function(callback) {
 			var application;
-			var path_start = IS_WINDOWS ? 'start' : 'open';
+			var path_start = IS_WINDOWS ? 'cmd' : 'open';
 
 
 			console.log(roto.colorize(path_start + ' "' + path_application + '"', 'magenta'));
 
 			application = IS_WINDOWS
-				? spawn(path_start, [path_application])
+				? exec("\""+path_application+"\"", function(error, stdout, stderr) {} )
 				: spawn(path_start, ['-F', '-n', path_application]);
 			application.stdout.on('data', function (data) { process.stdout.write(data); });
 			application.stderr.on('data', function (data) { process.stderr.write(data); });
-			application.on('exit', function(code) {
+			application.on('close', function(code) {
 				callback();
 			});
 		});
@@ -224,6 +233,7 @@ roto.addTarget('debug', {
 		});
 	} else {
 		roto.addTask(function(callback) {
+                        if (IS_WINDOWS) return callback();
 			var tail, args;
 
 			console.log(roto.colorize('tail -f "' + path_log + '"', 'magenta'));

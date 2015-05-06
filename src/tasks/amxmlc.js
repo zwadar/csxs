@@ -98,6 +98,7 @@ roto.defineTask('csxs.amxmlc', function(callback, options) {
 
 	// base compiler args
 	args = [
+               '+configname=air',
 		'-verify-digests',
 		'-warnings=true',
 		'-use-network=true',
@@ -106,8 +107,9 @@ roto.defineTask('csxs.amxmlc', function(callback, options) {
 		'-compiler.show-deprecation-warnings=true',
 		'-compiler.debug=' + String(options.profile === 'debug'),
 		'-locale=en_US',
+                '-compiler.external-library-path=' + config.flex[options.ver_flex].external.join(','),
 		'-output=' + options.path_output,
-		'-library-path+=' + config.flex[options.ver_flex].join(',')
+		'-library-path+=' + config.flex[options.ver_flex].libs.join(',')
 	];
 
 	// extended arguments

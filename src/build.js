@@ -14,6 +14,10 @@
  */
 
 global.IS_WINDOWS = !!process.platform.match(/^win/);
+if(IS_WINDOWS) {
+    global.IS_64BIT = !!process.arch.match(/^x64/);
+    
+}
 global.IS_MAC     = !IS_WINDOWS;
 global.config     = null;
 global.roto       = null;

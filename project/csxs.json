@@ -18,6 +18,8 @@
 
 	// Extension name to display in the panel's header and when installing the extension
 	"name": "{{name}}",
+        
+	"basename": "{{name}}",
 
 	// Your name or your company's name
 	"author": "{{author}}",
@@ -68,21 +70,25 @@
 
 	// A list of all libraries to link at compile time (by Flex version)
 	"flex": {
-		"3.4.0": [
-			"${CSSDK}/libs/CSXSLibrary-2.0-sdk-3.4-public.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/flex.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/framework.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/rpc.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/utilities.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/aircore.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/airglobal.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/airframework.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/servicemonitor.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater.swc",
-			"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater_ui.swc",
-			"${CSSDK}/libs/cslibs/1.0/3.4/release/apedelta.swc",
-      "${CSLIBS}/flex-html5/bin/flex-html5.swc"
-		]
+		"3.4.0": {
+			"libs" :[
+				"${CSSDK}/libs/CSXSLibrary-2.0-sdk-3.4-public.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/flex.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/framework.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/rpc.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/utilities.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/aircore.swc",
+			
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/airframework.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/servicemonitor.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/applicationupdater_ui.swc"
+			],
+			"external" :[
+				"${CSSDK}/libs/cslibs/1.0/3.4/release/apedelta.swc",
+				"${CSSDK}/CS Flex SDK 3.4.0/frameworks/libs/air/airglobal.swc"
+			]
+		}
 	},
 
   "builds": [

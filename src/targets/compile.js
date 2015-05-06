@@ -53,7 +53,7 @@ roto.addTarget('compile', {
 		ver_flex      = options['flex-version'] || config['flex-version'];
 		folder_cssdk  = process.env.CSSDK;
 		folder_flex   = folder_cssdk + '/CS Flex SDK ' + ver_flex;
-		bin_amxmlc    = IS_WINDOWS ? 'amxmlc.exe' : 'amxmlc';
+		bin_amxmlc    = IS_WINDOWS ? 'mxmlc.exe' : 'amxmlc';
 		path_amxmlc   = path.normalize(folder_flex + '/bin/' + bin_amxmlc);
 		path_manifest = path.resolve('./src', options['manifest']);
 
@@ -77,7 +77,19 @@ roto.addTarget('compile', {
 			return callback(false);
 		}
 
-		var libs = config.flex[ver_flex];
+		var libs = config.flex[ver_flex].libs;
+		for (var i = 0, n = libs.length; i < n; i++) {
+			libs[i] = libs[i].replace(/\$\{([a-zA-Z_]+)\}/g, function() {
+				var var_name  = arguments[1];
+				var var_value = process.env[var_name] || '';
+				return path.normalize(var_value).replace(/\/$/, '');
+			});
+			if (!fs.existsSync(libs[i])) {
+				console.error(roto.colorize('ERROR: ', 'red') + 'Unable to find "' + libs[i] + '"');
+				return callback(false);
+			}
+		}
+		libs = config.flex[ver_flex].external;
 		for (var i = 0, n = libs.length; i < n; i++) {
 			libs[i] = libs[i].replace(/\$\{([a-zA-Z_]+)\}/g, function() {
 				var var_name  = arguments[1];
@@ -116,7 +128,7 @@ roto.addTarget('compile', {
 	});
 
 	// copy jsx scripts
-	roto.addTask(function(callback) {
+	roto.addTask(function(callback) {             
 		if (fs.existsSync(folder_src + '/' + config.basename + '.jsx')) {
 			console.log('Copying *.jsx scripts... ');
 			roto.executeTask('csxs.fs_copy', {
@@ -153,6 +165,7 @@ roto.addTarget('compile', {
 
 	// compile all mxml files
 	var compile_mxml = function(path_mxml) {
+          
 		roto.addTask('csxs.amxmlc', function() {
 			return {
 				profile     : profile,
